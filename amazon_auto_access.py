@@ -1,0 +1,46 @@
+from socket import EAI_FAMILY
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
+# from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.support import expected_conditions as EC
+
+import time
+
+chromedriver_path = 'C:\\Program Files (x86)\\chromedriver.exe'
+driver = webdriver.Chrome(chromedriver_path)
+
+# Open amazon page
+driver.get('https://idp.amazon.work/idp/profile/SAML2/Unsolicited/SSO?providerId=idp.federate.amazon.com&target=AYABeHCXhaUiIGJ9Ji2ONlf0bQgAIwABAAN0eG4AGjVTMzUwM1JBOEU2QjRINjk4MVJFUFA4VFZOAAEAB2F3cy1rbXMAS2Fybjphd3M6a21zOnVzLWVhc3QtMTo2NDIzOTcxNzAzNTA6a2V5LzMxYTMwMTRhLTJmZjYtNDNjYi05YTc2LTYyMzIwYzdjN2NjMwC4AQIBAHhfEd4mF0OXYA9y9TmTDqNwOjTJBgpE6Kp4%2FIYxLfav9gFRAMHjZpImh12V5ywzSfloAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMmJAZ9vZ4H39pox3IAgEQgDtSCMmt3ZbtNmqc8dbGLEdsu4QV5bV3pwwd6SiqhkwYmDnEBn7svxeS2AtJTPdsXkpXXHc%2BA%2BL5ZbKASQIAAAAADAAAEAAAAAAAAAAAAAAAAAC3ttPQbu9Tm2REjISLaewM%2F%2F%2F%2F%2FwAAAAEAAAAAAAAAAAAAAAEAAAOEoEtMyWYq48dpp9oE1CJDI4QoUhGmnxiTgFKCoosmlV1Yz0dZP2z%2F84kM%2FH0ZwqKmckV4jBDOj01cevK0pMTIr%2BBSTxYZIPLdVBOLEudso2U0%2BW4WuefBSS7z5ON4I%2BfZK2vRjYyhlt1i8WIbVYARgmceuDaYVZ3SeNzeIh4IaY7H83giVDSntMpTRwUCq%2BY1%2Bg6IMfuz2iAgWkH3epwlStxbIg2d0dhopym4eTYDcvQcjDELtJws10zZX5U7TtJAX9XWr8LzYOY3RhdsYf3w8F7NL0f6GQI5j1ZCO857Ne5XSH5aRRYFrq%2BMP910MHXlkncHcMT3fik96iQoGRiU3uJC5fLj2JmkwvF%2FIK%2FUKSnYUaidmPJKdPdzzy2BzzPB%2BVAOsJevmBRkAnz1jdbiQBmm3XbCLcJvfXJmPuz6RA9lr9mCJjNTPtyJnANgF7A66hROThZlefLg8KTvOgd34sxAKEuJ6wBgh%2Bj3Ox7xTywc5e%2Bu55kRWw3EQNtYKEZShA7MeZpRoUwGv2%2BIAPq7648dx7ZBfpTleYD1rgGhOmcPIkLLpBomWmL9lynXzOOW36p3CM9AvW4usVKLIemwyLH23k2Om2BElNFfFZxB8SyG1aqiPhJ7HbJxbCRFw8f5w7b0k17gl76tXsr0hcZjBOwEngBejJ2L9ODBE3Fw43KO%2BPGAoz2CwO1AOupeRTZpskqk8ofX%2F%2B8Ddc5Xl30Q2HxNUUMkgrEkCZPUYLHldKU0uMbV6ohIDMCmMMFHckedprcwH975It2qpfwPjMgmuTkogVwfbUyq4%2FFypKP9TqklG0CHQUrbbL33jSclY8q2Gmm9jZdryMYxcYXbhBJ8IlNiXg11le8Ljz2T1OJsw7Q3EQK8Wfnk%2FYYsU0gkHvFhujlOqb5W8EwOJXEMbizOgit8xd3xQNKz4J3ZbO3Njj4VAFTRWn7CwgaTEcMytCsY9zrIwAJeyVHIMwmlw3IFu2QUrME3TcyUsU84L6UVboFjuhvCdgCb4rWtGZL4850XBwd09GqBF7LFPmQNYEvNVfmLzyqwhdtwfY0oiWDua6Pqk8FLp3MReu3xipY80QXLdJJoz6%2FleXoH09HM19tZzrlSTBVZT7ve%2FxzS0d7gfGs3tkUJ6hjvEZ4kLPsSN8MVwa4dc7XI5wT4KnWPf5cc%2F5YmwkVQNWqjZwW0pxy2xp9thb3Hu3rciyYXfjLLCNCmzsXRnA%3D%3D')
+# Find login box and enter credential
+login = driver.find_element_by_name('login')
+login.send_keys('Tdavidkr')
+login.send_keys(Keys.TAB)
+
+# Find password box and enter credential
+password = driver.find_element_by_name('password')
+password.send_keys('Gargonza1199$')
+password.send_keys(Keys.RETURN)
+
+# Sending by email
+email = driver.find_element_by_name('otpDestinationSelectionIndex')
+email.send_keys(Keys.DOWN)
+email.send_keys(Keys.RETURN)
+
+# Open new tab with google in it
+driver.execute_script(
+    "window.open ('https://mail.google.com/mail/u/0/#inbox','new window')")
+
+# Switch to other page. This was renamed from switch_to_window to switch_to.window
+driver.switch_to.window(driver.window_handles[1])
+
+# find username/email box and type credential
+google = driver.find_element_by_id('identifierId')
+google.send_keys('9048068762')
+time.sleep(5)
+
+google.send_keys(Keys.RETURN)
+
+# time.sleep(10)
+
+# driver.quit()
